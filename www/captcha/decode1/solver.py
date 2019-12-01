@@ -6,7 +6,7 @@ from PIL import Image,ImageChops
 from operator import itemgetter
 import hashlib,time
 import cStringIO,glob
-import math,os,requests
+import math,os,requests,socket,fcntl,struct
 
 #########################################################################
 #
@@ -30,7 +30,6 @@ train = False        # Save letter slices to make a training set for the algo; i
 testImages = False   # Save a copy of the filtered image (useful when working out what pix values to set below)
 post = True        # POST the attempted CAPTCHA solution to url2
 
-
 # Number of times you want the Script to Train or Solve
 stop = 10
 
@@ -38,12 +37,6 @@ stop = 10
 iconset = ['0','1','2','3','4','5','6','7','8','9','0',
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   #'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-
-# Url to CAPTCHA generator
-url = 'http://localhost/captcha/decode1/captcha1.php'
-
-# Url to page accepting CAPTCHA
-url2 = 'http://localhost/captcha/decode1/index.php'
 
 # The name of the CAPTCHA variable from the CAPTCHA submission Form at url2
 captchaVar = 'captcha'
@@ -53,7 +46,20 @@ captchaVar = 'captcha'
 pix1 = 1  # 1 is black
 pix2 = 1
 
+# Helper fucntion to auto return interface ip address
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])
 
+# Url to CAPTCHA generator
+url = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/captcha1.php'
+
+# Url to page accepting CAPTCHA
+url2 = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/index.php'
 
 # Classes and helper functions
 class VectorCompare:

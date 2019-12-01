@@ -15,7 +15,6 @@ imagefill($target_layer,0,0,$captcha_background);
 $captcha_text_color = imagecolorallocate($target_layer, 34, 0, 68);
 imagestring($target_layer, 5, 5, 5, $captcha_code, $captcha_text_color);
 
-
 header("Content-type: image/gif");
 imagegif($target_layer);
 ?>

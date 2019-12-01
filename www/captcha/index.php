@@ -43,8 +43,8 @@
                         <hr>
                         <div class="content">
                             <ul>
-                                <li><a href="decode1/">Text Decoding</a></li>
-                                <li><a href="decode2/">Image Decoding</a></li>
+                                <li><a href="decode1/">Dynamic Decoding</a></li>
+                                <li><a href="decode2/">Static Decoding</a></li>
                             </ul>
                         </div>
                     </div>
