@@ -243,7 +243,7 @@ for x in range(0,stop):
     if (demo):
       print "%s\n%s\n"%(
         correct,
-        re.search('POST\[\'captcha\'\]= [a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]',response.content).group(0))
+        re.search('SESSION\[\'captcha\'\]= [a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]',response.content).group(0))
     else:
       print "%s\n\n%s\n\n"%(correct,response.content)
 
