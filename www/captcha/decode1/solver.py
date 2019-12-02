@@ -57,12 +57,12 @@ def get_ip_address(ifname):
     )[20:24])
 
 # Url to CAPTCHA generator
-#url = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/captcha1.php'
-url = 'http://localhost/captcha/decode1/captcha1.php'
+url = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/captcha1.php'
+#url = 'http://localhost/captcha/decode1/captcha1.php'
 
 # Url to page accepting CAPTCHA
-#url2 = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/index.php'
-url2 = 'http://localhost/captcha/decode1/index.php'
+url2 = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/index.php'
+#url2 = 'http://localhost/captcha/decode1/index.php'
 
 # Classes and helper functions
 class VectorCompare:
