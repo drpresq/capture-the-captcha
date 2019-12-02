@@ -16,7 +16,7 @@ RUN apt-get -yq install apt-utils nano wget dialog
 
 # Prepare to facilitate the Captcha demo
 RUN apt-get -yq install python python-pip libjpeg-dev zlib1g-dev libfreetype6-dev liblcms2-dev
-RUN curl -sS http://effbot.org/media/downloads/PIL-1.1.7.tar.gz | tar zxvf - && /usr/bin/python PIL-1.1.7/setup.py install
+RUN curl -sS http://effbot.org/media/downloads/PIL-1.1.7.tar.gz | tar zxvf - && /usr/bin/python PIL-1.1.7/setup.py install && pip install pillow
 RUN usermod -u 1000 www-data
 RUN pip install requests
  
