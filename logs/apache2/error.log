@@ -43,3 +43,14 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [Fri Nov 29 10:57:45.122912 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.25 configured -- resuming normal operations
 [Fri Nov 29 10:57:45.122967 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
 [Fri Nov 29 11:24:32.269653 2019] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.2. Set the 'ServerName' directive globally to suppress this message
+[Sun Dec 01 23:06:28.356148 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.25 configured -- resuming normal operations
+[Sun Dec 01 23:06:28.356203 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sun Dec 01 23:06:33.562910 2019] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.2. Set the 'ServerName' directive globally to suppress this message
+[Sun Dec 01 23:06:37.620557 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.25 configured -- resuming normal operations
+[Sun Dec 01 23:06:37.620637 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+Traceback (most recent call last):
+  File "solver.py", line 246, in <module>
+    re.search('POST[\'captcha\']= [a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]',response.content).group(0))
+AttributeError: 'NoneType' object has no attribute 'group'

@@ -6,7 +6,7 @@ from PIL import Image,ImageChops
 from operator import itemgetter
 import hashlib,time
 import cStringIO,glob
-import math,os,requests,socket,fcntl,struct
+import math,os,requests,socket,fcntl,struct, re
 
 #########################################################################
 #
@@ -29,9 +29,10 @@ import math,os,requests,socket,fcntl,struct
 train = False        # Save letter slices to make a training set for the algo; if false, the algo will attempt to solve the CAPTCHA 
 testImages = False   # Save a copy of the filtered image (useful when working out what pix values to set below)
 post = True        # POST the attempted CAPTCHA solution to url2
+demo = True        # True for displaying on the results.php webpage
 
 # Number of times you want the Script to Train or Solve
-stop = 10
+stop = 5
 
 # List of Characters represented in your training set
 iconset = ['0','1','2','3','4','5','6','7','8','9','0',
@@ -56,10 +57,12 @@ def get_ip_address(ifname):
     )[20:24])
 
 # Url to CAPTCHA generator
-url = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/captcha1.php'
+#url = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/captcha1.php'
+url = 'http://localhost/captcha/decode1/captcha1.php'
 
 # Url to page accepting CAPTCHA
-url2 = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/index.php'
+#url2 = 'http://'+get_ip_address("enp0s3")+'/captcha/decode1/index.php'
+url2 = 'http://localhost/captcha/decode1/index.php'
 
 # Classes and helper functions
 class VectorCompare:
@@ -183,7 +186,7 @@ counter = 0
 start = time.time()
    
 #lets make X request read captcha 
-for x in range(1,stop):
+for x in range(0,stop):
   
   # Get the CAPTCHA image  
   response = session.get(url)
@@ -235,10 +238,15 @@ for x in range(1,stop):
     response = session.post(url2, data)
     correct = "[+] CAPTCHA Correct!"
     if("Incorrect" in response.content):
-      correct = "[-] Captcha Incorrect"
+      correct = "[-] CAPTCHA Incorrect"
       counter = counter+1
-    print "%s\n\n%s\n\n"%(correct,response.content)
+    if (demo):
+      print "%s\n%s\n"%(
+        correct,
+        re.search('POST\[\'captcha\'\]= [a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]',response.content).group(0))
+    else:
+      print "%s\n\n%s\n\n"%(correct,response.content)
 
 if(post):
-  print "\n\nThere were %x correct responses out of %s.\nSuccess Rate: %s" % ( (stop-counter) , stop , str(int(((stop-counter)/stop)*100))+"%")
+  print "\nThere were %x correct responses out of %s.\nSuccess Rate: %s" % ( (stop-counter) , stop , str(int(((stop-counter)/stop)*100))+"%")
   print "Elapse Time: %s minutes, %s seconds" %(int((time.time()-start)/60),int((time.time()-start)%60))
