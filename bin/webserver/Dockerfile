@@ -19,7 +19,7 @@ RUN apt-get -yq install python python-pip libjpeg-dev zlib1g-dev libfreetype6-de
 RUN curl -sS http://effbot.org/media/downloads/PIL-1.1.7.tar.gz | tar zxvf - && /usr/bin/python PIL-1.1.7/setup.py install
 RUN usermod -u 1000 www-data
 RUN pip install requests
-
+ 
 # Install important libraries
 RUN apt-get -y install --fix-missing apt-utils build-essential git curl libcurl3 libcurl3-dev zip openssl
 
