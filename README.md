@@ -30,12 +30,12 @@ The dynamic CAPTCHA Solver script (solver.py) is able to 'learn' different CAPTC
 
 Clone this repository on your local computer and `docker-compose up -d`.
 
-    ```
-    git clone https://github.com/drpresq/capture-the-captcha.git
-    cd capture-the-captcha/
-    cp sample.env .env
-    docker-compose up -d
-    ```
+```
+git clone https://github.com/drpresq/capture-the-captcha.git
+cd capture-the-captcha/
+cp sample.env .env
+docker-compose up -d
+```
 You can access the website via `http://localhost`.
 
 ### Acknowledgments
