@@ -8,7 +8,7 @@
     - [Acknowledgments](#acknowledgments)
 
 ### Description
-The Capture the CAPTCHA Demo is part of a presentation given by George Wood as part of his graduate course work at the University of Texas at El Paso (UTEP).
+The Capture the CAPTCHA Demo is part of a presentation given as part of graduate course work at the University of Texas at El Paso (UTEP).
 
 The purpose of this Demo is to provide a proof of concept and motivating example of security concerns related to the use and by pass of CAPTCHAs.
 
